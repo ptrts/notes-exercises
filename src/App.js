@@ -1,15 +1,9 @@
-import React, { Component } from 'react';
-import { BrowserRouter as Router, Route, Link } from "react-router-dom";
+import React, {Component} from 'react';
+import {BrowserRouter as Router, Link, Route} from "react-router-dom";
 
-import {
-    Container,
-    Row,
-    Col,
-    Dropdown,
-    DropdownMenu,
-    DropdownToggle,
-    DropdownItem,
-} from 'reactstrap';
+import {FontAwesomeIcon} from '@fortawesome/react-fontawesome';
+
+import {Col, Container, Dropdown, DropdownItem, DropdownMenu, DropdownToggle, Row,} from 'reactstrap';
 
 import {IndexLinkContainer} from 'react-router-bootstrap';
 
@@ -40,7 +34,9 @@ class App extends Component {
                             <Col>
 
                                 <Dropdown isOpen={this.state.isOpen} toggle={this.toggle}>
-                                    <DropdownToggle>Toggle</DropdownToggle>
+                                    <DropdownToggle>
+                                        <FontAwesomeIcon icon="coffee" />
+                                    </DropdownToggle>
                                     <DropdownMenu>
                                         
                                         <IndexLinkContainer to="/">
