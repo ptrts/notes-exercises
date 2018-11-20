@@ -7,9 +7,9 @@ import App from './App';
 import * as serviceWorker from './serviceWorker';
 
 import {library} from '@fortawesome/fontawesome-svg-core'
-import {faCheckSquare, faCoffee, faBars} from '@fortawesome/free-solid-svg-icons'
+import {faCheckSquare, faCoffee, faBars, faCogs} from '@fortawesome/free-solid-svg-icons'
 
-library.add(faCheckSquare, faCoffee, faBars);
+library.add(faCheckSquare, faCoffee, faBars, faCogs);
 
 ReactDOM.render(<App />, document.getElementById('root'));
 

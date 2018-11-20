@@ -1,14 +1,14 @@
 import React, {Component} from 'react';
-import {BrowserRouter as Router, Link, Route} from "react-router-dom";
+import {BrowserRouter as Router, Redirect, Route, Switch} from "react-router-dom";
 
 import {FontAwesomeIcon} from '@fortawesome/react-fontawesome';
 
-import {Col, Container, Dropdown, DropdownItem, DropdownMenu, DropdownToggle, Row,} from 'reactstrap';
+import {Button, Col, Container, Dropdown, DropdownItem, DropdownMenu, DropdownToggle, Row} from 'reactstrap';
 
-import {IndexLinkContainer} from 'react-router-bootstrap';
+import {LinkContainer} from 'react-router-bootstrap';
 
 class App extends Component {
-    
+
     constructor(props) {
         super(props);
 
@@ -17,65 +17,60 @@ class App extends Component {
             isOpen: false
         };
     }
-    
+
     toggle() {
         this.setState({
             isOpen: !this.state.isOpen
         });
     }
-    
+
     render() {
         return (
             <Router>
                 <div>
                     <Container>
-                        
+
                         <Row>
-                            
+
                             <Col xs="10">
                                 <h5>Музыкальные упражнения</h5>
                             </Col>
-                            
+
                             <Col xs="2">
 
                                 <Dropdown isOpen={this.state.isOpen} toggle={this.toggle}>
+
                                     <DropdownToggle color="outline-secondary">
-                                        <FontAwesomeIcon icon="bars" />
+                                        <FontAwesomeIcon icon="bars"/>
                                     </DropdownToggle>
+
                                     <DropdownMenu right>
-                                        
-                                        <IndexLinkContainer to="/">
+
+                                        <LinkContainer to="/home">
                                             <DropdownItem>
-                                                Home
+                                                Главный экран
                                             </DropdownItem>
-                                        </IndexLinkContainer>
-                                        
-                                        <IndexLinkContainer to="/about">
+                                        </LinkContainer>
+
+                                        <LinkContainer to="/intervalOperations">
                                             <DropdownItem>
-                                                About
+                                                Операции с интервалами
                                             </DropdownItem>
-                                        </IndexLinkContainer>
-                                        
-                                        <IndexLinkContainer to="/topics">
-                                            <DropdownItem>
-                                                Topics
-                                            </DropdownItem>
-                                        </IndexLinkContainer>
-                                        
+                                        </LinkContainer>
+
                                     </DropdownMenu>
                                 </Dropdown>
 
                             </Col>
                         </Row>
-                        
+
                         <Row>
                             <Col>
-                                <Route exact path="/" component={Home} />
-                                <Route path="/about" component={About} />
-                                <Route path="/topics" component={Topics} />
+                                <Route exact path="/home" component={Home}/>
+                                <Route path="/intervalOperations" component={IntervalOperations}/>
                             </Col>
                         </Row>
-                        
+
                     </Container>
                 </div>
             </Router>
@@ -86,51 +81,72 @@ class App extends Component {
 function Home() {
     return (
         <div>
-            <h2>Home</h2>
+            Это приложение с упражнениями по музыкальной арифметике. Выберите упражнение при помощи меню
         </div>
     );
 }
 
-function About() {
-    return (
-        <div>
-            <h2>About</h2>
-        </div>
-    );
+class IntervalOperations extends Component {
+
+    render() {
+        return (
+            <div>
+                <h2>Операции с интервалами</h2>
+                <Switch>
+                    <Route exact path="/intervalOperations/exercise" component={IntervalOperationsExercise}/>
+                    <Route exact path="/intervalOperations/config" component={IntervalOperationsConfiguration}/>
+                    <Redirect from="/intervalOperations/" to="/intervalOperations/exercise" />
+                </Switch>
+            </div>
+        );
+    }
 }
 
-function Topics({ match }) {
-    return (
-        <div>
-            <h2>Topics</h2>
-            <ul>
-                <li>
-                    <Link to={`${match.url}/rendering`}>Rendering with React</Link>
-                </li>
-                <li>
-                    <Link to={`${match.url}/components`}>Components</Link>
-                </li>
-                <li>
-                    <Link to={`${match.url}/props-v-state`}>Props v. State</Link>
-                </li>
-            </ul>
+class IntervalOperationsExercise extends Component {
 
-            <Route path={`${match.path}/:topicId`} component={Topic} />
-            <Route
-                exact
-                path={match.path}
-                render={() => <h3>Please select a topic.</h3>}
-            />
-        </div>
-    );
+    constructor(props) {
+        super(props);
+
+        this.state = {
+            interval1: 0,
+            interval2: 0,
+            operation: 1,
+            result: 0,
+        };
+    }
+
+    render() {
+        return (
+            <div>
+                <LinkContainer to="/intervalOperations/config">
+                    <Button>
+                        <FontAwesomeIcon icon="cogs"/>
+                    </Button>
+                </LinkContainer>
+                
+                <div>Само упражнение</div>
+            </div>
+        );
+    }
 }
 
-function Topic({ match }) {
-    return (
-        <div>
-            <h3>{match.params.topicId}</h3>
-        </div>
-    );
+class IntervalOperationsConfiguration extends Component {
+
+    constructor(props) {
+        super(props);
+
+        this.state = {
+            foo: 0,
+        };
+    }
+
+    render() {
+        return (
+            <div>
+                Настройка
+            </div>
+        );
+    }
 }
 
 export default App;
