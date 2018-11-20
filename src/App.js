@@ -31,13 +31,18 @@ class App extends Component {
                     <Container>
                         
                         <Row>
-                            <Col>
+                            
+                            <Col xs="10">
+                                <h5>Музыкальные упражнения</h5>
+                            </Col>
+                            
+                            <Col xs="2">
 
                                 <Dropdown isOpen={this.state.isOpen} toggle={this.toggle}>
-                                    <DropdownToggle>
-                                        <FontAwesomeIcon icon="coffee" />
+                                    <DropdownToggle color="outline-secondary">
+                                        <FontAwesomeIcon icon="bars" />
                                     </DropdownToggle>
-                                    <DropdownMenu>
+                                    <DropdownMenu right>
                                         
                                         <IndexLinkContainer to="/">
                                             <DropdownItem>
