@@ -18,6 +18,8 @@ import {
 
 import {LinkContainer} from 'react-router-bootstrap';
 
+import IntervalInput from './IntervalInput';
+
 import store from 'store2';
 
 class App extends Component {
@@ -197,14 +199,7 @@ class IntervalOperationsConfig extends Component {
                         <Label>Интервал 1</Label>
                     </Col>
                     <Col>
-                        <Input type="number"
-                               min="1"
-                               max="12"
-                               required
-                               value={this.state.min1}
-                               placeholder="Мин."
-                               onChange={this.handleChangeMin1.bind(this)}
-                        />
+                        <IntervalInput value={this.state.min1} onChange={this.handleChangeMin1.bind(this)} />
                     </Col>
                     <Col>
                         <Input type="number"
@@ -231,6 +226,7 @@ class IntervalOperationsConfig extends Component {
                                placeholder="Мин."
                                onChange={this.handleChangeMin2.bind(this)}
                         />
+
                     </Col>
                     <Col>
                         <Input type="number"
