@@ -3,6 +3,8 @@ import React, {Component} from "react";
 import IntervalInput from "../IntervalInput";
 import {Button, Col, CustomInput, Label, Row,} from "reactstrap";
 
+import {withRouter} from 'react-router-dom'
+
 const STORE = store.local.namespace('intervalOperations');
 
 class IntervalOperationsConfig extends Component {
@@ -60,11 +62,22 @@ class IntervalOperationsConfig extends Component {
         });
     }
 
-    handleOnClickApply() {
+    handleOnClickApply(history) {
         STORE.setAll(this.state);
+        history.push('/intervalOperations/Exercise');
     }
 
     render() {
+        
+        const ApplyButton = withRouter(({history}) => (
+            <Button
+                className="float-right"
+                onClick={this.handleOnClickApply.bind(this, history)}
+            >
+                Применить
+            </Button>            
+        ));
+
         return (
             <div>
 
@@ -114,12 +127,7 @@ class IntervalOperationsConfig extends Component {
 
                 <Row>
                     <Col>
-                        <Button
-                            className="float-right"
-                            onClick={this.handleOnClickApply.bind(this)}
-                        >
-                            Применить
-                        </Button>
+                        <ApplyButton />
                     </Col>
                 </Row>
 
