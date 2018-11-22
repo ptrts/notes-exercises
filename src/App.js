@@ -11,7 +11,6 @@ import {
     DropdownItem,
     DropdownMenu,
     DropdownToggle,
-    Input,
     Label,
     Row
 } from 'reactstrap';
@@ -162,27 +161,27 @@ class IntervalOperationsConfig extends Component {
         });
     }
 
-    handleChangeMin1(event) {
+    handleChangeMin1(value) {
         this.setState({
-            min1: event.target.value
+            min1: value
         });
     }
 
-    handleChangeMax1(event) {
+    handleChangeMax1(value) {
         this.setState({
-            max1: event.target.value
+            max1: value
         });
     }
 
-    handleChangeMin2(event) {
+    handleChangeMin2(value) {
         this.setState({
-            min2: event.target.value
+            min2: value
         });
     }
 
-    handleChangeMax2(event) {
+    handleChangeMax2(value) {
         this.setState({
-            max2: event.target.value
+            max2: value
         });
     }
 
@@ -202,14 +201,7 @@ class IntervalOperationsConfig extends Component {
                         <IntervalInput value={this.state.min1} onChange={this.handleChangeMin1.bind(this)} />
                     </Col>
                     <Col>
-                        <Input type="number"
-                               min="1"
-                               max="12"
-                               required
-                               value={this.state.max1}
-                               placeholder="Макс."
-                               onChange={this.handleChangeMax1.bind(this)}
-                        />
+                        <IntervalInput value={this.state.max1} onChange={this.handleChangeMax1.bind(this)} />
                     </Col>
                 </Row>
 
@@ -218,25 +210,10 @@ class IntervalOperationsConfig extends Component {
                         <Label>Интервал 2</Label>
                     </Col>
                     <Col>
-                        <Input type="number"
-                               min="1"
-                               max="12"
-                               required
-                               value={this.state.min2}
-                               placeholder="Мин."
-                               onChange={this.handleChangeMin2.bind(this)}
-                        />
-
+                        <IntervalInput value={this.state.min2} onChange={this.handleChangeMin2.bind(this)} />
                     </Col>
                     <Col>
-                        <Input type="number"
-                               min="1"
-                               max="12"
-                               required
-                               value={this.state.max2}
-                               placeholder="Макс."
-                               onChange={this.handleChangeMax2.bind(this)}
-                        />
+                        <IntervalInput value={this.state.max2} onChange={this.handleChangeMax2.bind(this)} />
                     </Col>
                 </Row>
 
