@@ -1,18 +1,17 @@
-import {Component} from "react";
+import React, {Component} from "react";
 import {Redirect, Route, Switch} from "react-router-dom";
 import IntervalOperationsExercise from "./IntervalOperationsExercise";
-import IntervalOperationsConfig from "./IntervalOperationsConfig";
-import React from "react";
+import IntervalOperationsConfigEditor from "./IntervalOperationsConfigEditor";
 
 class IntervalOperations extends Component {
 
     render() {
         return (
             <div>
-                <h2>Операции с интервалами</h2>
+                <h3>Операции с интервалами</h3>
                 <Switch>
                     <Route exact path="/intervalOperations/exercise" component={IntervalOperationsExercise}/>
-                    <Route exact path="/intervalOperations/config" component={IntervalOperationsConfig}/>
+                    <Route exact path="/intervalOperations/config" component={IntervalOperationsConfigEditor}/>
                     <Redirect from="/intervalOperations/" to="/intervalOperations/exercise"/>
                 </Switch>
             </div>

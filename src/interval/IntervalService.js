@@ -1,4 +1,4 @@
-import validate from './validate';
+import validate from '../validate';
 
 export class Interval {
 
@@ -62,4 +62,8 @@ export const sequence = _generateBigSequence(0, 23);
 export function subsequence(min, max) {
     _validateMinMax(min, max);
     return sequence.slice(min, max + 1);
+}
+
+export function shortName(halfTones) {
+    return sequence[halfTones].shortName;
 }
