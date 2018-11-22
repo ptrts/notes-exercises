@@ -65,5 +65,9 @@ export function subsequence(min, max) {
 }
 
 export function shortName(halfTones) {
-    return sequence[halfTones].shortName;
+    if (halfTones >= 0) {
+        return sequence[halfTones].shortName;
+    } else {
+        return sequence[-halfTones].shortName + ' ниже';
+    }
 }
