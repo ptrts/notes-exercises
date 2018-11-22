@@ -3,17 +3,7 @@ import {BrowserRouter as Router, Redirect, Route, Switch} from "react-router-dom
 
 import {FontAwesomeIcon} from '@fortawesome/react-fontawesome';
 
-import {
-    Button,
-    Col,
-    Container,
-    Dropdown,
-    DropdownItem,
-    DropdownMenu,
-    DropdownToggle,
-    Label,
-    Row
-} from 'reactstrap';
+import {Button, Col, Container, CustomInput, Dropdown, DropdownItem, DropdownMenu, DropdownToggle, Label, Row} from 'reactstrap';
 
 import {LinkContainer} from 'react-router-bootstrap';
 
@@ -185,6 +175,22 @@ class IntervalOperationsConfig extends Component {
         });
     }
 
+    handleChangeAllowPlus(event) {
+        const value = event.currentTarget.checked;
+        console.log(value);
+        this.setState({
+            allowPlus: value
+        });
+    }
+
+    handleChangeAllowMinus(event) {
+        const value = event.currentTarget.checked;
+        console.log(value);
+        this.setState({
+            allowMinus: value
+        });
+    }
+
     handleOnClickApply() {
         STORE.setAll(this.state);
     }
@@ -216,10 +222,35 @@ class IntervalOperationsConfig extends Component {
                         <IntervalInput value={this.state.max2} onChange={this.handleChangeMax2.bind(this)} />
                     </Col>
                 </Row>
-
+                
+                <div className="d-flex">
+                    
+                    <CustomInput 
+                        type="checkbox" 
+                        id="allowPlus" 
+                        label="Сложение"
+                        checked={this.state.allowPlus}
+                        onChange={this.handleChangeAllowPlus.bind(this)}
+                    />
+                    
+                    <CustomInput
+                        className="ml-4"
+                        type="checkbox" 
+                        id="allowMinus" 
+                        label="Вычитание"
+                        checked={this.state.allowMinus}
+                        onChange={this.handleChangeAllowMinus.bind(this)}
+                    />
+                </div>
+                
                 <Row>
                     <Col>
-                        <Button onClick={this.handleOnClickApply.bind(this)}>Применить</Button>
+                        <Button 
+                            className="float-right"
+                            onClick={this.handleOnClickApply.bind(this)}
+                        >
+                            Применить
+                        </Button>
                     </Col>
                 </Row>
 
