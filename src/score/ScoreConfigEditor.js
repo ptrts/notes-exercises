@@ -1,7 +1,7 @@
 import React, {Component} from "react";
 import * as ScoreConfigService from "./ScoreConfigService";
-import NumberInput from '../number/NumberInput'
-import {Button, Col, Label, Row,} from "reactstrap";
+import {Button, Col, Label, Row, CustomInput} from "reactstrap";
+import NoteInput from '../notes/NoteInput'
 
 import {withRouter} from 'react-router-dom'
 
@@ -12,15 +12,41 @@ class ScoreConfigEditor extends Component {
         this.state = ScoreConfigService.load();
     }
 
-    handleChangeMin(value) {
+    trebleMinNoteHandleChange(value) {
         this.setState({
-            min: value
+            trebleMinNote: value
         });
     }
 
-    handleChangeMax(value) {
+    trebleMaxNoteHandleChange(value) {
         this.setState({
-            max: value
+            trebleMaxNote: value
+        });
+    }
+
+    bassMinNoteHandleChange(value) {
+        this.setState({
+            bassMinNote: value
+        });
+    }
+
+    bassMaxNoteHandleChange(value) {
+        this.setState({
+            bassMaxNote: value
+        });
+    }
+
+    handleChangeAllowTreble(event) {
+        const value = event.currentTarget.checked;
+        this.setState({
+            allowTreble: value
+        });
+    }
+
+    handleChangeAllowBass(event) {
+        const value = event.currentTarget.checked;
+        this.setState({
+            allowBass: value
         });
     }
 
@@ -45,16 +71,42 @@ class ScoreConfigEditor extends Component {
 
                 <Row className="mb-2">
                     <Col>
-                        <Label>Интервал</Label>
+                        <NoteInput clef="treble" value={this.state.trebleMinNote} onChange={this.trebleMinNoteHandleChange.bind(this)}/>
                     </Col>
                     <Col>
-                        <NumberInput value={this.state.min} onChange={this.handleChangeMin.bind(this)} />
-                    </Col>
-                    <Col>
-                        <NumberInput value={this.state.max} onChange={this.handleChangeMax.bind(this)} />
+                        <NoteInput clef="treble" value={this.state.trebleMaxNote} onChange={this.trebleMaxNoteHandleChange.bind(this)}/>
                     </Col>
                 </Row>
 
+                <Row className="mb-2">
+                    <Col>
+                        <NoteInput clef="bass" value={this.state.bassMinNote} onChange={this.bassMinNoteHandleChange.bind(this)}/>
+                    </Col>
+                    <Col>
+                        <NoteInput clef="bass" value={this.state.bassMaxNote} onChange={this.bassMaxNoteHandleChange.bind(this)}/>
+                    </Col>
+                </Row>
+
+                <div className="d-flex">
+
+                    <CustomInput
+                        type="checkbox"
+                        id="allowTreble"
+                        label="Высокие"
+                        checked={this.state.allowTreble}
+                        onChange={this.handleChangeAllowTreble.bind(this)}
+                    />
+
+                    <CustomInput
+                        className="ml-4"
+                        type="checkbox"
+                        id="allowBass"
+                        label="Низкие"
+                        checked={this.state.allowBass}
+                        onChange={this.handleChangeAllowBass.bind(this)}
+                    />
+                    
+                </div>
                 <Row>
                     <Col>
                         <ApplyButton />

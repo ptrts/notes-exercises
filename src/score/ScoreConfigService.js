@@ -2,8 +2,12 @@ import store2 from "store2";
 import ScoreConfig from './ScoreConfig';
 
 const _DEFAULT_SCORE_CONFIG = new ScoreConfig({
-    min: 1,
-    max: 12,
+    allowTreble: true,
+    allowBass: false,
+    trebleMinNote: 'c/4',
+    trebleMaxNote: 'c/4',
+    bassMinNote: 'c/4',
+    bassMaxNote: 'c/4',
 });
 
 const _STORE = store2.local.namespace('score');
