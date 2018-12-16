@@ -8,6 +8,7 @@ import {Col, Container, Dropdown, DropdownItem, DropdownMenu, DropdownToggle, Ro
 import {LinkContainer} from 'react-router-bootstrap';
 
 import IntervalOperations from './intervalOperations/IntervalOperations';
+import Score from './score/Score';
 import Home from './home/Home';
 
 class App extends Component {
@@ -61,6 +62,12 @@ class App extends Component {
                                             </DropdownItem>
                                         </LinkContainer>
 
+                                        <LinkContainer to="/score">
+                                            <DropdownItem>
+                                                Ноты
+                                            </DropdownItem>
+                                        </LinkContainer>
+
                                     </DropdownMenu>
                                 </Dropdown>
 
@@ -71,6 +78,7 @@ class App extends Component {
                             <Col>
                                 <Route exact path="/home" component={Home}/>
                                 <Route path="/intervalOperations" component={IntervalOperations}/>
+                                <Route path="/score" component={Score}/>
                             </Col>
                         </Row>
 
