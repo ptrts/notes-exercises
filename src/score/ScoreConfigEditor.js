@@ -1,6 +1,6 @@
 import React, {Component} from "react";
 import * as ScoreConfigService from "./ScoreConfigService";
-import {Button, Col, Label, Row, CustomInput} from "reactstrap";
+import {Button, Col, Row, CustomInput} from "reactstrap";
 import NoteInput from '../notes/NoteInput'
 
 import {withRouter} from 'react-router-dom'
@@ -47,6 +47,13 @@ class ScoreConfigEditor extends Component {
         const value = event.currentTarget.checked;
         this.setState({
             allowBass: value
+        });
+    }
+
+    handleChangeKeyboard(event) {
+        const value = event.currentTarget.checked;
+        this.setState({
+            keyboard: value
         });
     }
 
@@ -104,6 +111,15 @@ class ScoreConfigEditor extends Component {
                         label="Низкие"
                         checked={this.state.allowBass}
                         onChange={this.handleChangeAllowBass.bind(this)}
+                    />
+                    
+                    <CustomInput
+                        className="ml-4"
+                        type="checkbox"
+                        id="keyboard"
+                        label="Клавиатура"
+                        checked={this.state.keyboard}
+                        onChange={this.handleChangeKeyboard.bind(this)}
                     />
                     
                 </div>

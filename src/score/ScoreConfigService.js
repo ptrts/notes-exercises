@@ -4,6 +4,7 @@ import ScoreConfig from './ScoreConfig';
 const _DEFAULT_SCORE_CONFIG = new ScoreConfig({
     allowTreble: true,
     allowBass: false,
+    keyboard: true,
     trebleMinNote: 'c/4',
     trebleMaxNote: 'c/4',
     bassMinNote: 'c/4',

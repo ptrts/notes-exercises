@@ -80,29 +80,33 @@ export function parseNote(noteStr) {
 }
 
 function _fromOctaveNumberAndIndex(octaveNumber, index) {
-    let bigIndex = octaveNumber * 7 + index;
-    let ru = NOTES_RU[index];
-    let str = _getStr(octaveNumber, index);
+    const bigIndex = octaveNumber * 7 + index;
+    const ru = NOTES_RU[index];
+    const en = NOTES.charAt(index);
+    const str = _getStr(octaveNumber, index);
     return {
         octaveNumber,
         index,
         bigIndex,
         str,
         ru,
+        en,
     };
 }
 
 export function noteFromBigIndex(bigIndex) {
     const index = bigIndex % 7;
     const octaveNumber = Math.round((bigIndex - index) / 7);
-    let ru = NOTES_RU[index];
-    let str = _getStr(octaveNumber, index);
+    const ru = NOTES_RU[index];
+    const en = NOTES.charAt(index);
+    const str = _getStr(octaveNumber, index);
     return {
         octaveNumber,
         index,
         bigIndex,
         str,
         ru,
+        en,
     };
 }
 
