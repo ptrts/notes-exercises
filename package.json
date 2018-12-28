@@ -24,6 +24,9 @@
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
+    "deploy": "yarn run build && yarn run deploy:clean && yarn run deploy:copy",
+    "deploy:clean": "rm -rf /e/www",
+    "deploy:copy": "cp -R build /e/www",
     "test": "react-scripts test",
     "eject": "react-scripts eject"
   },
